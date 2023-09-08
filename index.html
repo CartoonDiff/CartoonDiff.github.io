@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+
+    <title>NullTextforCartoon</title>
+</head>
+<body>
+<div style="padding: 2rem 0; background-color: #fff;">
+    <!--       <h1 style="text-align: center;">NullTextforCartoon</h1> -->
+    <!--       <h1 style="text-align: center;"><img style="width: 15%" src='./static/logo.png'></h1>  -->
+    <h2 style="text-align: center;">Null-text Guidance in Diffusion Models is Secretly a Cartoon-style Creator</h2>
+    <!--       <h2 style="text-align: center;">by Fusing Diffusion Models</h2> -->
+</div>
+
+
+<div class="authors">
+    <p style="padding-bottom: 5px;">Jing Zhao<sup>1</sup> , Heliang Zheng<sup>2</sup>, Chaoyue Wang<sup>2</sup>, Long Lan<sup>1</sup>,Wanrong Huang<sup>1</sup>, Wenjing Yang<sup>1</sup></p>
+    <p class="smaller"><sup>1</sup>National University of Defense Technology; <sup>2</sup>JD Explore Academy</p> 
+</div>
+<div align="center" style="text-align: center; padding: 20px 100px; background-color: #fff;">
+    <!--       <embed src="./static/github.pdf" type="application/pdf" width="100%" height="100%" internalinstanceid="81 /> -->
+    <object type="image/jpeg" data="./static/figure1.png" width=1200px height="100%"></object>
+</div>
+
+<div class="authors" style="text-align: center!important; font-family: 'Noto Sans', sans-serif; margin:30px">
+      <span class="link-block"
+            style="font-style: inherit;font-weight: inherit;background-color: #dee2e6; padding: 10px 30px; border-radius: 25px;text-align: center;margin-right: 20px;">
+         <a href="static/github.pdf" target="_blank"
+            class="external-link button is-normal is-rounded">
+                  <span class="icon">
+                    <i class="fas fa-book-reader"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+      </span>
+    <span class="link-block"
+          style="font-style: inherit;font-weight: inherit;background-color: #dee2e6; padding: 10px 30px; border-radius: 25px;text-align: center;">
+                <a href="https://github.com/NullTextforCartoon/NullTextforCartoon" target="_blank"
+                   class="external-link button is-normal is-rounded">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+              </span>
+</div>
+
+<div class="abstract">
+    <div class="inside">
+        <h3 style="text-align: center;">Abstract</h2>
+            <p class="text">
+                Classifier-free guidance is an effective sampling technique in diffusion models that has been widely
+                adopted. The main idea is to extrapolate the model in the direction of text guidance and away from
+                null-text guidance. In this paper, we demonstrate that null-text guidance in diffusion models is
+                secretly a cartoon-style creator, i.e., the generated images can be efficiently transformed into
+                cartoons by simply perturbing the null-text guidance.
+                Specifically, we proposed two disturbance methods, i.e., Rollback disturbance (Back-D) and Image
+                disturbance (Image-D), to construct misalignment between the noisy images used for predicting null-text
+                guidance and text guidance (subsequently referred to as null-text noisy image andtext noisy image
+                respectively) in the sampling process. Back-D achieves cartoonization by altering the noise level of
+                null-text noisy image via replacing 𝑥𝑡 with 𝑥𝑡 +Δ𝑡 . Image-D, alternatively, produces high-fidelity,
+                diverse cartoons by defining 𝑥𝑡 as a clean input
+                image, which further improves the incorporation of finer image details.
+                Through comprehensive experiments, we delved into the principle of noise disturbing for null-text and
+                uncovered that the efficacy of disturbance depends on the correlation between the null-text noisy image
+                and the source image. Moreover, our proposed techniques, which can generate cartoon images and
+                cartoonize specific ones, are training-free and easily integrated as a plug-and-play component in any
+                classifier-free guided diffusion model.
+                Project page is available at <a href="https://nulltextforcartoon.github.io">https://nulltextforcartoon.github.io</a>.
+            </p>
+            <!--         <br>
+                    <br>
+                    <a class="read-paper" href="https://arxiv.org/pdf/2211.14108.pdf" target="_blank"><button>Research Paper</button></a>   -->
+    </div>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>An overview of the proposed methods.</h2>
+</div>
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/method.png" width=auto height="100%"></object>
+
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Comparison between Rollback disturbance and Image disturbance</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure4.png" width=600px height="100%"></object>
+    <p style="text-align: left">
+        The results depicted in the second row on the right of Figure 4 demonstrate that utilizing Image-D leads to
+        enhanced preservation of intricate features present in the input image, and thereby results in superior
+        fidelity.
+    </p>
+</div>
+
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Analysis of the null-text noisy image</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure5.png" width=600px height="100%"></object>
+    <p style="text-align: left">
+        Figure 5 illustrates two additional settings for 𝑥𝜎 , viz., an unrelated image 𝑥𝑖𝑟𝑟 and an isotropic image
+        𝑥𝑖𝑠𝑜 that shares structural similarity with the input image. The degree of correlation between 𝑥𝑟𝑒𝑓 and 𝑥𝜎 in
+        various settings satisfies:
+
+    </p>
+    <object type="image/jpeg" data="./static/eq5.png" width=auto height="100%"></object>
+    <p style="text-align: left">
+        The results indicate that as the correlation degree between null-text noisy image and input images 𝑥𝑟𝑒𝑓
+        increases, both the quality and fidelity of generation improve.
+    </p>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>The main experimental results</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure6.png" width=1000px height="100%"></object>
+    <p style="text-align: left">
+        Figure 6: Results of (a) free generation using Back-D, (b) Image cartoonization using Back-D and (c) using
+        Image-D. The results indicate that the proposed method enables free cartoon generation of portraits, animals,
+        landscapes, and architectures, while achieving image cartoonization.
+
+    </p>
+    <object type="image/jpeg" data="./static/figure7.png" width=1000px height="100%"></object>
+    <p style="text-align: left">
+        Figure 7: Image cartoonization showcases diversity. The Image disturbance (Image-D) contain richer diversity of
+        details.
+    </p>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Comparison with other cartoon generation works</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure8.png" width=1000px height="100%"></object>
+    <p style="text-align: left">
+        Figure 8 displays a comparison between our method and cartoon image generation model Anything v3 [ 24 ] and
+        stable diffusion model v1.4[24]. Anything v3 is trained extensively with cartoon images but fails to accurately
+        generate cartoons for new concepts or scenes not featured within its training data-as seen. For example, case "A
+        photo of Robert Downey Jr." and case "The city of lights". It also suffers from scenario construction failure
+        (case"A rabbit is eating carrot") and over-anthropomorphization of animals as illustrated in case "A koala is
+        climbing a tree". Meanwhile, the stable diffusion model v1.4 operates by modifying guided prompts "xxx" with
+        "xxx in cartoon style", and its resulting images lack spatial information and appear too flat, as demonstrated
+        in the first three cases of row 2 in Figure 22. Moreover, it remains prone to cartoonization failures, as shown
+        in the case "A koala is climbing a tree". Conversely, our method generates more accurate, vivid, and
+        artistically textured cartoon images.
+
+    </p>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Comparison with other Image cartoonization works</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure9.png" width=1000px height="100%"></object>
+    <p style="text-align: left">
+        Figure 9: Comparison with other Image cartoonization works. The images resulting from the cartoonization of
+        AnimeGANv3 [4] and White-box [36] appear to have been flattened, resembling drawings on a two-dimensional plane.
+        However, our method produces cartoonized images that are more vivid and lifelike, approaching the
+        three-dimensional quality of animated scenes.
+
+    </p>
+</div>
+
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Restrictions on the sampling steps</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure10.png" width=1000px height="100%"></object>
+    <p style="text-align: left">
+        Figure 10: Study on the number of DDIM sampling steps 𝑁 . 𝑁 larger than 60 yield a clean cartoon, while greater
+        steps (100 or above) enhance the cartoon effect.
+    </p>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>The influence of text guidance</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px;  margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure11.png" width=600px height="100%"></object>
+    <p style="text-align: left">
+        Figure 11: The influence of text guidance. Accurate textual guidance can enhance the conceptual understanding of
+        the diffusion model on the input image, thereby rendering generated images more expressive. conversely,
+        mismatched textual guidance may introduce greater creativity into the generated output.
+    </p>
+</div>
+
+<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
+    <h2>Application on ControlNet</h2>
+</div>
+
+<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
+    <!-- <h3 style="text-align: center;"></h5> -->
+    <object type="image/jpeg" data="./static/figure12.png" width=600px height="100%"></object>
+    <p style="text-align: left; width: 1200px">
+        As a plug-and-play cartoonize component, the proposed method can be readily applied to the classifier-free
+        guided diffusion model. In this study, we investigated the efficacy of the proposed method in ControlNet [ 39 ].
+        Specifically, we leveraged the Back-D proposed in this work to cartoonize the results of
+        scribble-to-image task in ControlNet and present the findings in Figure 12. The outcomes indicate that the
+        proposed technique is not only easily adaptable to other tasks but also produces a favorable cartoon effect.
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
