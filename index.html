@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 
-    <title>NullTextforCartoon</title>
+    <title>CartoonDiff</title>
 </head>
 <body>
 <div style="padding: 2rem 0; background-color: #fff;">
@@ -28,18 +28,18 @@
 
 
 <div class="authors">
-    <p style="padding-bottom: 5px;">Jing Zhao<sup>1</sup> , Heliang Zheng<sup>2</sup>, Chaoyue Wang<sup>2</sup>, Long Lan<sup>1</sup>,Wanrong Huang<sup>1</sup>, Wenjing Yang<sup>1</sup></p>
-    <p class="smaller"><sup>1</sup>National University of Defense Technology; <sup>2</sup>JD Explore Academy</p> 
+    <p style="padding-bottom: 5px;">Feihong He<sup>1</sup> , Gang Li<sup>2</sup>, Chaoyue Wang<sup>2</sup>, Long Lan<sup>1</sup>,Wanrong Huang<sup>1</sup>, Wenjing Yang<sup>1</sup></p>
+    <p class="smaller"><sup>1</sup>Soochow University; <sup>2</sup></p>
 </div>
 <div align="center" style="text-align: center; padding: 20px 100px; background-color: #fff;">
     <!--       <embed src="./static/github.pdf" type="application/pdf" width="100%" height="100%" internalinstanceid="81 /> -->
-    <object type="image/jpeg" data="./static/figure1.png" width=1200px height="100%"></object>
+    <object type="image/jpeg" data="./static/figure1.png" width=900px height="75%"></object>
 </div>
 
 <div class="authors" style="text-align: center!important; font-family: 'Noto Sans', sans-serif; margin:30px">
       <span class="link-block"
             style="font-style: inherit;font-weight: inherit;background-color: #dee2e6; padding: 10px 30px; border-radius: 25px;text-align: center;margin-right: 20px;">
-         <a href="static/github.pdf" target="_blank"
+         <a href=" " target="_blank"
             class="external-link button is-normal is-rounded">
                   <span class="icon">
                     <i class="fas fa-book-reader"></i>
@@ -49,7 +49,7 @@
       </span>
     <span class="link-block"
           style="font-style: inherit;font-weight: inherit;background-color: #dee2e6; padding: 10px 30px; border-radius: 25px;text-align: center;">
-                <a href="https://github.com/NullTextforCartoon/NullTextforCartoon" target="_blank"
+                <a href=" " target="_blank"
                    class="external-link button is-normal is-rounded">
                 <span class="icon">
                   <i class="fab fa-github"></i>
@@ -63,24 +63,15 @@
     <div class="inside">
         <h3 style="text-align: center;">Abstract</h2>
             <p class="text">
-                Classifier-free guidance is an effective sampling technique in diffusion models that has been widely
-                adopted. The main idea is to extrapolate the model in the direction of text guidance and away from
-                null-text guidance. In this paper, we demonstrate that null-text guidance in diffusion models is
-                secretly a cartoon-style creator, i.e., the generated images can be efficiently transformed into
-                cartoons by simply perturbing the null-text guidance.
-                Specifically, we proposed two disturbance methods, i.e., Rollback disturbance (Back-D) and Image
-                disturbance (Image-D), to construct misalignment between the noisy images used for predicting null-text
-                guidance and text guidance (subsequently referred to as null-text noisy image andtext noisy image
-                respectively) in the sampling process. Back-D achieves cartoonization by altering the noise level of
-                null-text noisy image via replacing 𝑥𝑡 with 𝑥𝑡 +Δ𝑡 . Image-D, alternatively, produces high-fidelity,
-                diverse cartoons by defining 𝑥𝑡 as a clean input
-                image, which further improves the incorporation of finer image details.
-                Through comprehensive experiments, we delved into the principle of noise disturbing for null-text and
-                uncovered that the efficacy of disturbance depends on the correlation between the null-text noisy image
-                and the source image. Moreover, our proposed techniques, which can generate cartoon images and
-                cartoonize specific ones, are training-free and easily integrated as a plug-and-play component in any
-                classifier-free guided diffusion model.
-                Project page is available at <a href="https://nulltextforcartoon.github.io">https://nulltextforcartoon.github.io</a>.
+                Image cartoonization has attracted significant interest in the
+field of image generation. However, most of the existing image cartoonization techniques require re-training models or
+using images of cartoon style as reference. In this paper,we present CartoonDiff, a novel reference and training-free
+sampling approach which generates image cartoonization using diffusion transformer models. Specifically, we decompose the reverse process of diffusion models into high and
+low-frequency signal denoising processes. Furthermore, we implement the image cartoonization process by normalizing
+high-frequency signal of the noisy image in specific denoising steps. CartoonDiff doesn’t require any additional refer-
+ence images, complex model designs, or the tedious adjustment of multiple parameters. Extensive experimental results
+show the powerful ability of our CartoonDiff. The projectpage is available at:
+                Project page is available at <a href="https://cartoondiff.github.io/">https://cartoondiff.github.io/</a>.
             </p>
             <!--         <br>
                     <br>
@@ -94,41 +85,31 @@
 <div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
     <!-- <h3 style="text-align: center;"></h5> -->
     <object type="image/jpeg" data="./static/method.png" width=auto height="100%"></object>
+    <p style="text-align: left">
+        Methodology overview and model structure diagram. (a) expresses the classifier-free extrapolation the models to
+        specific classes under conditional guidance. (b) Illustrates our investigation of the denoising process for the
+        diffusion model, categorizing it into low-frequency and high-frequency signal denoising stages based on the
+        generated images for relative frequency information. In (c), we present the improvements made to the model
+        based on the DiT[1] structure.
+    </p>
 
 </div>
 
 <div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>Comparison between Rollback disturbance and Image disturbance</h2>
+    <h2>The Influence Of 𝜎 Parameters On Cartoonization</h2>
 </div>
 
 <div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
     <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure4.png" width=600px height="100%"></object>
-    <p style="text-align: left">
-        The results depicted in the second row on the right of Figure 4 demonstrate that utilizing Image-D leads to
-        enhanced preservation of intricate features present in the input image, and thereby results in superior
-        fidelity.
+    <p>
+    <video id="chiken" muted="muted" autoplay="autoplay" src="./static/chicken.mp4" controls="controls" width=300px height="50%"></video>
     </p>
-</div>
-
-
-<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>Analysis of the null-text noisy image</h2>
-</div>
-
-<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
-    <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure5.png" width=600px height="100%"></object>
-    <p style="text-align: left">
-        Figure 5 illustrates two additional settings for 𝑥𝜎 , viz., an unrelated image 𝑥𝑖𝑟𝑟 and an isotropic image
-        𝑥𝑖𝑠𝑜 that shares structural similarity with the input image. The degree of correlation between 𝑥𝑟𝑒𝑓 and 𝑥𝜎 in
-        various settings satisfies:
-
+    <p>
+    <video id="eagle" muted="muted" autoplay="autoplay" src="./static/eagle.mp4" controls="controls" width=300px height="50%">
+        </video>
     </p>
-    <object type="image/jpeg" data="./static/eq5.png" width=auto height="100%"></object>
     <p style="text-align: left">
-        The results indicate that as the correlation degree between null-text noisy image and input images 𝑥𝑟𝑒𝑓
-        increases, both the quality and fidelity of generation improve.
+        Observing from the image change results, we can see that better results can be achieved when the hyperparameter is between 200 and 300.
     </p>
 </div>
 
@@ -140,16 +121,12 @@
     <!-- <h3 style="text-align: center;"></h5> -->
     <object type="image/jpeg" data="./static/figure6.png" width=1000px height="100%"></object>
     <p style="text-align: left">
-        Figure 6: Results of (a) free generation using Back-D, (b) Image cartoonization using Back-D and (c) using
-        Image-D. The results indicate that the proposed method enables free cartoon generation of portraits, animals,
-        landscapes, and architectures, while achieving image cartoonization.
+        Based on DiT XL/2[1], with a hyperparameter σ set to 250, we present the results of DiT’s generation and the results
+generated using CartoonDiff. In each pair of images, the left side shows the original image generated by DiT, while the right
+side shows the image cartoonized using CartoonDiff.
 
     </p>
-    <object type="image/jpeg" data="./static/figure7.png" width=1000px height="100%"></object>
-    <p style="text-align: left">
-        Figure 7: Image cartoonization showcases diversity. The Image disturbance (Image-D) contain richer diversity of
-        details.
-    </p>
+
 </div>
 
 <div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
@@ -158,80 +135,16 @@
 
 <div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
     <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure8.png" width=1000px height="100%"></object>
+    <object type="image/jpeg" data="./static/figure8.png" width=400px height="40%"></object>
     <p style="text-align: left">
-        Figure 8 displays a comparison between our method and cartoon image generation model Anything v3 [ 24 ] and
-        stable diffusion model v1.4[24]. Anything v3 is trained extensively with cartoon images but fails to accurately
-        generate cartoons for new concepts or scenes not featured within its training data-as seen. For example, case "A
-        photo of Robert Downey Jr." and case "The city of lights". It also suffers from scenario construction failure
-        (case"A rabbit is eating carrot") and over-anthropomorphization of animals as illustrated in case "A koala is
-        climbing a tree". Meanwhile, the stable diffusion model v1.4 operates by modifying guided prompts "xxx" with
-        "xxx in cartoon style", and its resulting images lack spatial information and appear too flat, as demonstrated
-        in the first three cases of row 2 in Figure 22. Moreover, it remains prone to cartoonization failures, as shown
-        in the case "A koala is climbing a tree". Conversely, our method generates more accurate, vivid, and
-        artistically textured cartoon images.
-
-    </p>
-</div>
-
-<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>Comparison with other Image cartoonization works</h2>
-</div>
-
-<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
-    <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure9.png" width=1000px height="100%"></object>
-    <p style="text-align: left">
-        Figure 9: Comparison with other Image cartoonization works. The images resulting from the cartoonization of
-        AnimeGANv3 [4] and White-box [36] appear to have been flattened, resembling drawings on a two-dimensional plane.
-        However, our method produces cartoonized images that are more vivid and lifelike, approaching the
-        three-dimensional quality of animated scenes.
-
+        The comparative experiment between CartoonDiff and
+Back-D includes images where each small image in the
+upper-left corner represents the original image output, while
+the larger image represents the output after cartoonization.
     </p>
 </div>
 
 
-<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>Restrictions on the sampling steps</h2>
-</div>
-
-<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
-    <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure10.png" width=1000px height="100%"></object>
-    <p style="text-align: left">
-        Figure 10: Study on the number of DDIM sampling steps 𝑁 . 𝑁 larger than 60 yield a clean cartoon, while greater
-        steps (100 or above) enhance the cartoon effect.
-    </p>
-</div>
-
-<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>The influence of text guidance</h2>
-</div>
-
-<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px;  margin-left: auto; margin-right: auto;width: 1200px">
-    <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure11.png" width=600px height="100%"></object>
-    <p style="text-align: left">
-        Figure 11: The influence of text guidance. Accurate textual guidance can enhance the conceptual understanding of
-        the diffusion model on the input image, thereby rendering generated images more expressive. conversely,
-        mismatched textual guidance may introduce greater creativity into the generated output.
-    </p>
-</div>
-
-<div class="split" style="padding: 5px;background-color: rgb(230, 230, 230);color:black; text-align: center;">
-    <h2>Application on ControlNet</h2>
-</div>
-
-<div style="text-align: center; padding:50px 100px; background-color: #fff; font-size:20px; margin-left: auto; margin-right: auto;width: 1200px">
-    <!-- <h3 style="text-align: center;"></h5> -->
-    <object type="image/jpeg" data="./static/figure12.png" width=600px height="100%"></object>
-    <p style="text-align: left; width: 1200px">
-        As a plug-and-play cartoonize component, the proposed method can be readily applied to the classifier-free
-        guided diffusion model. In this study, we investigated the efficacy of the proposed method in ControlNet [ 39 ].
-        Specifically, we leveraged the Back-D proposed in this work to cartoonize the results of
-        scribble-to-image task in ControlNet and present the findings in Figure 12. The outcomes indicate that the
-        proposed technique is not only easily adaptable to other tasks but also produces a favorable cartoon effect.
-</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
