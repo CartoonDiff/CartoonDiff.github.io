@@ -17,7 +17,7 @@
     <sup></sup>University of Chinese Academy of Sciences
     <sup></sup>Northwestern Polytechnical University
 </div>
-
+</div>
 
 
 ## CartoonDiff Code
